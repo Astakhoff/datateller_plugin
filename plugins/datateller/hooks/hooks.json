@@ -1,0 +1,53 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "mcp__plugin_datateller_datateller__.*",
+        "hooks": [
+          {
+            "type": "mcp_tool",
+            "server": "plugin:datateller:datateller",
+            "tool": "datateller_hook_after_call",
+            "input": {
+              "session_id": "${session_id}",
+              "tool_name": "${tool_name}",
+              "tool_use_id": "${tool_use_id}",
+              "tool_response": "${tool_response}"
+            }
+          }
+        ]
+      },
+      {
+        "matcher": "AskUserQuestion",
+        "hooks": [
+          {
+            "type": "mcp_tool",
+            "server": "plugin:datateller:datateller",
+            "tool": "datateller_hook_form_answer",
+            "input": {
+              "session_id": "${session_id}",
+              "tool_use_id": "${tool_use_id}",
+              "tool_input": "${tool_input}",
+              "tool_response": "${tool_response}"
+            }
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "mcp_tool",
+            "server": "plugin:datateller:datateller",
+            "tool": "datateller_hook_before_stop",
+            "input": {
+              "session_id": "${session_id}",
+              "stop_hook_active": "${stop_hook_active}"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

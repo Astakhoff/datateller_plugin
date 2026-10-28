@@ -1,0 +1,14 @@
+{
+  "name": "datateller",
+  "version": "0.2.1",
+  "description": "DataTeller: one connection to your data workspace — catalog, reports and dashboards, metrics, access and monitoring for BigQuery, ClickHouse and AWS analytics.",
+  "author": {
+    "name": "DataTeller",
+    "url": "https://datateller.ai"
+  },
+  "homepage": "https://datateller.ai",
+  "repository": "https://github.com/Astakhoff/datateller_plugin",
+  "license": "MIT",
+  "keywords": ["datateller", "data-catalog", "bigquery", "clickhouse", "reports", "dashboards", "metrics", "mcp"],
+  "icon": "./assets/logo.svg"
+}

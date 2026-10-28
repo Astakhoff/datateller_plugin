@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "datateller": {
+      "type": "http",
+      "url": "https://app.datateller.ai/mcp"
+    }
+  }
+}
