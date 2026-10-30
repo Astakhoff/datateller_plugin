@@ -1,6 +1,6 @@
 {
   "name": "datateller",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "DataTeller: one connection to your data workspace — catalog, reports and dashboards, metrics, access and monitoring for BigQuery, ClickHouse and AWS analytics.",
   "author": {
     "name": "DataTeller",
@@ -13,6 +13,11 @@
   "skills": "./skills/",
   "mcpServers": "./.mcp.json",
   "hooks": "./hooks/codex-hooks.json",
+  "extensions": {
+    "com.openai": {
+      "onboardingSkill": "./skills/dt-setup/SKILL.md"
+    }
+  },
   "interface": {
     "displayName": "DataTeller",
     "shortDescription": "Your data catalog, reports and monitoring",

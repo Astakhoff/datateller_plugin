@@ -1,83 +1,71 @@
-# DataTeller plugin
+# Плагин DataTeller
 
-DataTeller is a descriptive layer over your data: a catalog of tables and metrics,
-reports and dashboards, access and roles, and monitoring for BigQuery, ClickHouse
-and AWS analytics. This plugin connects Claude (claude.ai, Desktop, mobile, Claude Code)
-and Codex / ChatGPT to your DataTeller workspace through **one** MCP server.
+DataTeller соединяет каталог данных, метрики, отчёты, доступ и мониторинг BigQuery,
+ClickHouse и AWS analytics через один MCP-вход `https://app.datateller.ai/mcp`.
 
-## What is inside
+## Настройка в Codex desktop
 
-| Part | Content |
+1. В Plugins добавьте публичный источник `Astakhoff/datateller_plugin` и установите DataTeller.
+2. Подключите DataTeller в карточке плагина. В окне OAuth войдите в свой аккаунт,
+   выберите проекты и подтвердите доступ, затем вернитесь в приложение.
+3. Запустите предложенный **Setup** DataTeller. Настройка продолжится в новом чате
+   или в текущем, если плагин установлен из него. Для уже установленного плагина
+   попросите в чате запустить скилл `dt-setup`.
+4. В setup-чате нажмите **Review hooks** у поля ввода. Если кнопка не видна,
+   используйте карточку DataTeller → Hooks → Review. Проверьте два хука DataTeller,
+   PostToolUse и Stop, и лично подтвердите доверие. Установка и OAuth не заменяют этот шаг.
+5. Setup проверит доступные проекты и отдельно сообщит, что ещё не проверено.
+   Доверие не гарантирует совместимость формы: оценка человека требует четырёх
+   вариантов без заранее выбранного ответа. Без совместимой формы вопрос пропускается.
+   Текстового ответа цифрой вместо формы нет. Реальную работу проверяет следующий
+   запрос пользователя; отсутствие оценки не заменяется выдуманной записью.
+
+Если Review недоступен, настройка сообщит ограничение клиента. Доступ к данным
+может работать независимо от хуков. Нельзя считать оценки готовыми только по OAuth.
+
+## Требования к хукам
+
+- Claude Code **2.1.308** или новее, в том числе вкладка Code в Claude Desktop.
+- Codex **0.163.0-alpha.11** или новее; эта версия поставляется с Codex desktop **26.1016**.
+
+Версия клиента — только исходное требование: поддержку формы и личное доверие
+хукам проверяйте отдельно по шагам настройки выше. Более новая версия сама по себе
+не подтверждает готовность оценок.
+
+Справка об оценках и записываемых данных: запись `plugin.feedback-hooks` в DataTeller Help.
+Попросите ассистента прочитать её через коннектор `https://app.datateller.ai/help-mcp`.
+
+## Другие клиенты и прямое MCP-подключение
+
+Для Claude используйте штатную установку из того же публичного репозитория и OAuth
+вашего клиента. Codex Setup и Review hooks — элементы Codex desktop; их наличие
+в Claude, ChatGPT web/mobile или Cursor этот пакет не обещает. Хуки требуют поддержки
+клиента; установленный пакет сам по себе её не добавляет.
+
+Без плагина добавьте адрес `https://app.datateller.ai/mcp` через интерфейс MCP
+подключений клиента. Выбор проектов и права те же; локальных хуков плагина в этом
+режиме нет. Для человеческой оценки действует то же правило: нативная форма или
+молчаливый пропуск. Методика агентской оценки остаётся отдельной.
+
+## Состав
+
+| Часть | Назначение |
 |---|---|
-| `.claude-plugin/plugin.json` | Listing metadata: name, version, description, icon, links |
-| `.codex-plugin/plugin.json` | The same metadata for Codex; points Codex to its own hooks file |
-| `.mcp.json` | Exactly one remote MCP server — the shared DataTeller entry `https://app.datateller.ai/mcp` |
-| `assets/logo.svg` | The DataTeller `dt` mark from the official brand kit |
-| `skills/` | Three skill pointers: `dt-create-report`, `dt-manage-access`, `dt-create-metric` (see `skills/README.md`) |
-| `hooks/` | Feedback hooks: `hooks.json` for Claude Code, `codex-hooks.json` for Codex. Every hook only calls a DataTeller tool on the same server; no commands, no texts |
+| `.claude-plugin/plugin.json` | Метаданные Claude |
+| `.codex-plugin/plugin.json` | Метаданные Codex, его хуки и onboardingSkill |
+| `.mcp.json` | Один общий MCP-вход DataTeller |
+| `skills/` | Три указателя на методики и отдельный `dt-setup` |
+| `hooks/` | Только вызовы инструментов DataTeller, без команд и встроенных методик |
+| `assets/logo.svg` | Фирменный знак DataTeller |
 
-There are no commands, no executable code, no secrets and no customer data in this package.
-Everything the assistant knows about how to work with DataTeller — including what the hooks
-say — lives on the server and is maintained by the DataTeller team.
+В пакете нет исполняемого кода, секретов и клиентских данных. Методики и текст хуков
+живут на сервере. Отозвать доступ можно на сайте DataTeller в разделе «MCP».
+Версии манифестов Claude и Codex обновляются вместе; изменение определения хука
+может потребовать нового личного review в клиенте.
 
-## Feedback hooks: requirements
-
-The hooks ask the assistant to rate its own confidence in DataTeller results and offer you one
-optional question about the suggested data source. They need:
-
-- **Claude Code 2.1.308** or newer (Claude Code tab of Claude Desktop);
-- **Codex 0.163.0-alpha.11** or newer (ships with Codex desktop 26.1016). In Codex, approve the
-  DataTeller hooks once in `/hooks`.
-
-Without hooks support the plugin works as usual, just without these ratings.
-
-How to answer the question, how to turn the hooks off for yourself, which clients run them
-and what is recorded: DataTeller Help, record `plugin.feedback-hooks` (Help connector
-`https://app.datateller.ai/help-mcp`; ask the assistant to look it up).
-
-## Connecting
-
-1. Install the plugin in your client. In Claude Code:
-
-   ```
-   /plugin marketplace add Astakhoff/datateller_plugin
-   /plugin install datateller@datateller
-   ```
-
-   In Codex CLI:
-
-   ```
-   codex plugin marketplace add Astakhoff/datateller_plugin
-   codex plugin add datateller@datateller
-   ```
-
-   In Claude (claude.ai / Desktop) and Codex / ChatGPT add the same marketplace repository
-   `Astakhoff/datateller_plugin` in the plugin settings.
-2. On the first call the client opens a browser window: sign in to DataTeller with your
-   usual account and approve the connection.
-3. Ask the assistant which projects you can reach — it calls `datateller_whoami` and lists
-   them. Every write names the target project explicitly.
-
-You only see the projects and tools your DataTeller roles allow; the plugin grants nothing
-by itself. You can revoke the connection at any time in DataTeller, section «MCP».
-
-Direct connection without the plugin works as well, with the same address:
-
-```
-codex mcp add datateller --url https://app.datateller.ai/mcp
-```
-
-## Links
+## Ссылки
 
 - Website: https://datateller.ai
 - Privacy policy: https://datateller.ai/privacy
 
-## Versioning
-
-The plugin version in `.claude-plugin/plugin.json` and `.codex-plugin/plugin.json` (always the
-same) is raised with every release of the package. The version of the server-side
-methodologies is reported by `datateller_whoami`.
-
-## License
-
-MIT, see `LICENSE`.
+Лицензия MIT, см. LICENSE.

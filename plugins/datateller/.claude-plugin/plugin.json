@@ -1,6 +1,6 @@
 {
   "name": "datateller",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "DataTeller: one connection to your data workspace — catalog, reports and dashboards, metrics, access and monitoring for BigQuery, ClickHouse and AWS analytics.",
   "author": {
     "name": "DataTeller",

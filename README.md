@@ -1,52 +1,34 @@
-# DataTeller plugin for Claude and Codex
+# Плагин DataTeller для Claude и Codex
 
-This repository is the plugin catalog (marketplace) of DataTeller. It holds exactly one plugin,
-`datateller`, that connects Claude (claude.ai, Desktop, Claude Code) and Codex / ChatGPT to your
-DataTeller workspace through one MCP server: catalog, reports and dashboards, metrics, access and
-monitoring for BigQuery, ClickHouse and AWS analytics.
+Публичный репозиторий содержит один плагин DataTeller: каталог, метрики, отчёты,
+права и мониторинг через единый MCP-вход `https://app.datateller.ai/mcp`.
 
-## Install
+## Подключение внутри приложения
 
-Claude Code:
+В Codex desktop откройте Plugins, добавьте источник `Astakhoff/datateller_plugin`
+и установите DataTeller. Подключите аккаунт, выберите проекты в окне OAuth и
+вернитесь в приложение. Запустите предложенный **Setup**: настройка продолжится
+в чате. Там **Review hooks** позволяет лично проверить два хука DataTeller.
+Если кнопка не видна, путь остаётся внутри приложения: DataTeller → Hooks → Review.
 
-```
-/plugin marketplace add Astakhoff/datateller_plugin
-/plugin install datateller@datateller
-```
+OAuth даёт доступ к выбранным проектам, но не доверие локальным хукам. Настройка
+отдельно сообщает готовность подключения, доверия и фактической работы. Доверие
+не гарантирует совместимую форму: нужны четыре варианта без заранее выбранного
+ответа; иначе вопрос об оценке молча пропускается, без текстового заменителя.
 
-Codex CLI:
+Для Claude используйте штатную установку того же источника и OAuth своего клиента;
+элементы Codex Setup/Review hooks другим клиентам не обещаются.
+Полный сценарий, ограничения и состав: [README плагина](plugins/datateller/README.md).
 
-```
-codex plugin marketplace add Astakhoff/datateller_plugin
-codex plugin add datateller@datateller
-```
-
-In Claude (claude.ai / Desktop) and Codex / ChatGPT add the marketplace repository
-`Astakhoff/datateller_plugin` in the plugin settings.
-
-On the first call the client opens a browser window: sign in to DataTeller and approve the
-connection. You only see the projects and tools your DataTeller roles allow; the plugin grants
-nothing by itself.
-
-## What is inside
-
-| Path | Content |
+| Путь | Содержимое |
 |---|---|
-| `.claude-plugin/marketplace.json` | The catalog file; Claude and Codex both read it |
-| `plugins/datateller/` | The plugin itself; see its [README](plugins/datateller/README.md) |
+| `.claude-plugin/marketplace.json` | Каталог плагина |
+| `plugins/datateller/` | Пакет DataTeller |
 
-There is no executable code, no secrets and no customer data in this repository.
+В репозитории нет исполняемого кода, секретов и клиентских данных.
+Пакет публикуется из основного репозитория DataTeller; прямые изменения этой копии
+заменяются при следующем выпуске.
 
-## Links
+Сайт: https://datateller.ai · Конфиденциальность: https://datateller.ai/privacy
 
-- Website: https://datateller.ai
-- Privacy policy: https://datateller.ai/privacy
-
-## How this repository is maintained
-
-The plugin is developed in the main DataTeller repository and copied here on every release, so
-changes made directly in this repository are overwritten by the next release.
-
-## License
-
-MIT, see `LICENSE`.
+Лицензия MIT, см. LICENSE.
