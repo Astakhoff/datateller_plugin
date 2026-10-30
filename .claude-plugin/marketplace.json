@@ -5,14 +5,14 @@
   },
   "metadata": {
     "description": "DataTeller: one connection to your data workspace — catalog, reports and dashboards, metrics, access and monitoring for BigQuery, ClickHouse and AWS analytics.",
-    "version": "0.2.2"
+    "version": "0.2.3"
   },
   "plugins": [
     {
       "name": "datateller",
       "source": "./plugins/datateller",
       "description": "DataTeller: one connection to your data workspace — catalog, reports and dashboards, metrics, access and monitoring for BigQuery, ClickHouse and AWS analytics.",
-      "version": "0.2.2",
+      "version": "0.2.3",
       "author": {
         "name": "DataTeller",
         "url": "https://datateller.ai"
