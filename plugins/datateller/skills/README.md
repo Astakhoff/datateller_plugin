@@ -1,12 +1,13 @@
 # Скиллы DataTeller
 
-Три деловых скилла остаются короткими указателями на серверные методики:
+Четыре деловых скилла остаются короткими указателями на серверные методики:
 
 | Скилл | Методика |
 |---|---|
 | `dt-create-report` | `catalog_report_guide` |
 | `dt-manage-access` | `catalog_access_guide` |
 | `dt-create-metric` | `catalog_metric_guide` |
+| `dt-collect-candidates` | `catalog_read_candidate_skill` |
 
 `dt-setup` — такой же короткий указатель на системный `datateller_plugin_setup_guide`.
 После OAuth он читает `common` и одну клиентскую секцию. В Codex он объявлен как
