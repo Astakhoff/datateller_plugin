@@ -1,15 +1,16 @@
-# Скиллы DataTeller
+# DataTeller skills
 
-Четыре деловых скилла остаются короткими указателями на серверные методики:
+Business skills remain short pointers to server methodologies:
 
-| Скилл | Методика |
+| Skill | Methodology |
 |---|---|
 | `dt-create-report` | `catalog_report_guide` |
 | `dt-manage-access` | `catalog_access_guide` |
 | `dt-create-metric` | `catalog_metric_guide` |
 | `dt-collect-candidates` | `catalog_read_candidate_skill` |
+| `dt-manage-gtm` | `gtm_guide` |
 
-`dt-setup` — такой же короткий указатель на системный `datateller_plugin_setup_guide`.
-После OAuth он читает `common` и одну клиентскую секцию. В Codex он объявлен как
-onboardingSkill. Методика единая для всей платформы, правится в существующей
-админке Agent Skills; локальных копий и проектных переопределений нет.
+`dt-setup` is a short pointer to the system-wide `datateller_plugin_setup_guide`.
+After OAuth it reads `common` and one client section. Codex declares it as onboardingSkill.
+The methodology is shared across the platform and edited in the existing Agent Skills
+administration interface; there are no local copies or project overrides.
