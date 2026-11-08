@@ -9,6 +9,7 @@ Business skills remain short pointers to server methodologies:
 | `dt-create-metric` | `catalog_metric_guide` |
 | `dt-collect-candidates` | `catalog_read_candidate_skill` |
 | `dt-manage-gtm` | `gtm_guide` |
+| `dt-create-agent` | `catalog_agent_guide` |
 
 `dt-setup` is a short pointer to the system-wide `datateller_plugin_setup_guide`.
 After OAuth it reads `common` and one client section. Codex declares it as onboardingSkill.

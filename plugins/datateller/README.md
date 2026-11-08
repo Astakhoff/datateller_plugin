@@ -1,6 +1,6 @@
 # DataTeller plugin
 
-Package version: **0.2.5**.
+Package version: **0.2.6**.
 
 DataTeller connects your data catalog, metrics, reports, access and BigQuery,
 ClickHouse and AWS analytics monitoring through one MCP entry: `https://app.datateller.ai/mcp`.
@@ -51,7 +51,7 @@ and does not promise another client's capabilities to an unknown client.
 | `.claude-plugin/plugin.json` | Claude metadata |
 | `.codex-plugin/plugin.json` | Codex metadata, hooks and onboardingSkill |
 | `.mcp.json` | One shared DataTeller MCP entry |
-| `skills/` | Six short pointers to server methodologies |
+| `skills/` | Seven short pointers to server methodologies |
 | `hooks/` | DataTeller tool calls only; no commands or embedded methodologies |
 | `assets/logo.svg` | Official DataTeller brand mark |
 
