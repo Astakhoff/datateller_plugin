@@ -1,6 +1,7 @@
 # DataTeller skills
 
-Business skills remain short pointers to server methodologies:
+Every skill starts with a local connection recovery instruction, available before OAuth.
+Business skills then point to server methodologies:
 
 | Skill | Methodology |
 |---|---|

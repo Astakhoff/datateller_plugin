@@ -5,6 +5,18 @@ description: DataTeller access and roles. Use when the user wants to give or rev
 
 # DataTeller: manage access and roles
 
+## Connection first
+
+Before OAuth, on confirmed missing authorization or `reauthenticationRequired`, immediately say in the user's language:
+"Connect DataTeller through its installed plugin card to continue; if connected before, sign in again."
+Use **Connect** only if offered there, or the client's native auth action; never invent controls or links.
+Pause dependent calls; request sign-in once per recovery, without retry loops. Do not call this a service failure.
+Never suggest a terminal, reinstall, secrets or config edits. If all tools are absent without an auth signal,
+say the cause is unknown and ask to check connection status on the card. One missing tool with working whoami
+is not an OAuth failure: check groups, selected project, enabled module and permissions first. After connection,
+use the available read-only `datateller_whoami` on that same connection, keep the selected project, then resume
+the original task and read its method. Do not restart completed setup.
+
 Use this skill when the user asks to give or revoke access, assign or change a role, or manage
 groups, members and role sets in a DataTeller project.
 
